@@ -1,0 +1,69 @@
+
+"""
+		welcome to the My tool 
+			developed by Hemant Kengeri
+"""
+
+import os
+import pyttsx3
+
+print(__doc__)
+
+exitlist=["quite","exit"]
+itemlist=["notepad","sublime","chrome","wmplayer","whatsapp","git"]
+runlist=["execute","run","open","rerun","reopen","re-run","re-open"]
+nolist=["don't","do not","not"]
+
+pyttsx3.speak("Hello there, So which tool u want to run ")
+print("Hello there, So which tool u want to run :")
+for i in itemlist:
+	print(" ",i)
+print("\tthese are some sugessions from me")
+pyttsx3.speak("these are some sugessions from me")
+
+
+flag=True
+
+while flag==True:
+	userinput=[]
+
+	itemf,runf,nof,exitf="","","",""
+
+	userinput=input("-->").lower().split(" ")
+
+	for i in userinput:
+		if (i in itemlist):
+			itemf=i
+	
+	for i in userinput:
+		if i in runlist:
+			runf=i
+	
+	for i in userinput:
+		if i in nolist:
+			nof=i
+	
+	for i in userinput:
+		if (i in exitlist):
+			exitf=i
+
+	if exitf!="":
+		flag=False
+	elif nof!="":
+		print("ok i will not open ",itemf)
+	elif (itemf!="" and runf!="") or (itemf!="" and runf==""):
+		print(itemf," opening..")
+		if itemf=="git":
+			print("please enter commands for git and type exit for close git")
+			
+			while True:
+				
+				b=input(" git-->")
+				if b!="exit":
+					os.system(b)
+				else:
+					break
+		else:
+			os.system(itemf)
+	else:
+		print("Sorry! I am still not capable to do this..")
